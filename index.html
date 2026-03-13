@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai Break Games — India's Next Mobile Game Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #c9732f;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #c9732f;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #c9732f 0%, #a85c3a 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🛺';
+            position: absolute;
+            top: -20px;
+            right: -30px;
+            font-size: 10rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+        }
+
+        .cta-button {
+            background: #fff;
+            color: #c9732f;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background: #1a1a1a;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #c9732f;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(201, 115, 47, 0.08);
+            border: 2px solid #c9732f;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(201, 115, 47, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #c9732f;
+            margin-bottom: 1rem;
+        }
+
+        /* Personas Section */
+        .personas {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        }
+
+        .personas h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #c9732f;
+        }
+
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .persona {
+            background: rgba(201, 115, 47, 0.1);
+            border-left: 4px solid #c9732f;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .persona .emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .persona h4 {
+            color: #c9732f;
+            margin-bottom: 0.3rem;
+        }
+
+        .persona .age {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mechanics Section */
+        .mechanics {
+            padding: 4rem 2rem;
+            background: #1a1a1a;
+        }
+
+        .mechanics h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #c9732f;
+        }
+
+        .mechanics-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .mechanic-item {
+            display: flex;
+            gap: 1.5rem;
+            background: rgba(201, 115, 47, 0.08);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #c9732f;
+        }
+
+        .mechanic-item .icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .mechanic-item h4 {
+            color: #c9732f;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #c9732f 0%, #a85c3a 100%);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .stat .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .stat .label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 4rem 2rem;
+            background: #1a1a1a;
+            text-align: center;
+        }
+
+        .download h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #c9732f;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            background: #c9732f;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            background: #a85c3a;
+            transform: translateY(-2px);
+        }
+
+        .coming-soon {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            text-align: center;
+            border-top: 3px solid #c9732f;
+        }
+
+        footer p {
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #c9732f;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #a85c3a;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .features h2,
+            .personas h2,
+            .mechanics h2 {
+                font-size: 2rem;
+            }
+
+            .feature-grid,
+            .persona-grid {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">🛺 Jugaad Racer</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🛺 Chai Break Games</h1>
+        <p class="tagline">Games inspired by India. Built for the world.</p>
+        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+            Presenting our first game:<br/>
+            <strong style="font-size: 1.4rem; color: #fff;">Jugaad Racer</strong>
+        </p>
+        <a href="#jugaad-racer" class="cta-button">Discover the Game</a>
+    </section>
+
+    <!-- Studio Intro Section -->
+    <section class="mechanics" id="jugaad-racer">
+        <h2>About Chai Break Games</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                <strong>Chai Break Games</strong> is a mobile game studio building games for India's 500M+ gamers.
+                We believe great games come from understanding your players — their culture, their cities, their lives.
+            </p>
+            <p style="font-size: 1rem; color: #ccc; margin-bottom: 1.5rem;">
+                <strong>Jugaad Racer</strong> is our first title. It's an infinite runner inspired by the chaos and energy
+                of Indian roads — Temple Run meets marketplace mayhem.
+            </p>
+            <p style="font-size: 1rem; color: #ccc;">
+                <strong>Coming soon to Google Play Store.</strong> Free to play. Ads + real-money challenges.
+                Made for everyone from tier-1 metros to tier-3 towns.
+            </p>
+        </div>
+    </section>
+
+    <!-- Game Showcase Section -->
+    <section class="features">
+        <h2>🎮 Jugaad Racer — Gameplay</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">⚡</div>
+                <h3>Instant Fun</h3>
+                <p>No tutorials. Tap to jump. That's it. 3-5 minute runs that fit your day.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🇮🇳</div>
+                <h3>Desi Vibes</h3>
+                <p>Navigate chaotic Indian roads with cows, potholes, weddings & more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h3>Weekly Prizes</h3>
+                <p>Complete challenges. Win ₹10 via UPI. Every week, 100 winners. Real money.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎮</div>
+                <h3>Endless Replay</h3>
+                <p>Procedural obstacles. Leaderboards. Compete nationally or with friends.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📱</div>
+                <h3>Play Offline</h3>
+                <p>No internet? No problem. Core game works fully offline. Ads optional.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏆</div>
+                <h3>Shareworthy</h3>
+                <p>Every Game Over is a moment. Share scores on WhatsApp instantly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personas Section -->
+    <section class="personas">
+        <h2>Built for Everyone</h2>
+        <div class="persona-grid">
+            <div class="persona">
+                <div class="emoji">👦</div>
+                <h4>Rohan</h4>
+                <p class="age">19, Patna</p>
+                <p>"Plays it at 11pm on a Redmi. Shares to WhatsApp."</p>
+            </div>
+            <div class="persona">
+                <div class="emoji">👩</div>
+                <h4>Priya</h4>
+                <p class="age">32, Pune</p>
+                <p>"15-min break from work. Polished enough to show friends."</p>
+            </div>
+            <div class="persona">
+                <div class="emoji">👨</div>
+                <h4>Suresh</h4>
+                <p class="age">44, Coimbatore</p>
+                <p>"Competitive. Checks leaderboard daily. Chases top 10."</p>
+            </div>
+            <div class="persona">
+                <div class="emoji">👧</div>
+                <h4>Aisha</h4>
+                <p class="age">16, Lucknow</p>
+                <p>"First-run moment is Reel-worthy. Posts to Instagram."</p>
+            </div>
+            <div class="persona">
+                <div class="emoji">👵</div>
+                <h4>Kamala</h4>
+                <p class="age">58, Mysore</p>
+                <p>"One finger. Understands it in 10 seconds. Plays daily."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mechanics Section -->
+    <section class="mechanics">
+        <h2>How to Play</h2>
+        <div class="mechanics-list">
+            <div class="mechanic-item">
+                <div class="icon">👆</div>
+                <div>
+                    <h4>Tap to Jump</h4>
+                    <p>Avoid cows, potholes, and broken autos by jumping.</p>
+                </div>
+            </div>
+            <div class="mechanic-item">
+                <div class="icon">👈</div>
+                <div>
+                    <h4>Swipe to Dodge</h4>
+                    <p>Dodge obstacles sideways when a quick turn is needed.</p>
+                </div>
+            </div>
+            <div class="mechanic-item">
+                <div class="icon">🦆</div>
+                <div>
+                    <h4>Duck Under Banners</h4>
+                    <p>Some obstacles require crouching to pass safely.</p>
+                </div>
+            </div>
+            <div class="mechanic-item">
+                <div class="icon">❤️</div>
+                <div>
+                    <h4>Health System</h4>
+                    <p>Collide with obstacles = lose health. Hit zero = Game Over. One revive per session.</p>
+                </div>
+            </div>
+            <div class="mechanic-item">
+                <div class="icon">🚀</div>
+                <div>
+                    <h4>Speed Increases</h4>
+                    <p>Road gets faster as you survive. Difficulty ramps smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Renderings Section -->
+    <section class="features">
+        <h2>🎨 Game Visuals (Coming Soon)</h2>
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+
+                <div style="background: rgba(201, 115, 47, 0.1); border: 2px solid #c9732f; border-radius: 12px; padding: 2rem; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🛺</div>
+                    <h4 style="color: #c9732f; margin-bottom: 1rem;">Your Auto-Rickshaw</h4>
+                    <p style="color: #ccc; font-size: 0.95rem;">
+                        Stylized 3D rickshaw with dynamic tilt and bounce. Customizable cosmetics unlock as you play.
+                    </p>
+                </div>
+
+                <div style="background: rgba(201, 115, 47, 0.1); border: 2px solid #c9732f; border-radius: 12px; padding: 2rem; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🌆</div>
+                    <h4 style="color: #c9732f; margin-bottom: 1rem;">Marketplace Roads</h4>
+                    <p style="color: #ccc; font-size: 0.95rem;">
+                        Bright, colorful Indian marketplace aesthetics. Shop facades, street vendors, bustling energy.
+                    </p>
+                </div>
+
+                <div style="background: rgba(201, 115, 47, 0.1); border: 2px solid #c9732f; border-radius: 12px; padding: 2rem; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🐄🚦🎊</div>
+                    <h4 style="color: #c9732f; margin-bottom: 1rem;">Living Obstacles</h4>
+                    <p style="color: #ccc; font-size: 0.95rem;">
+                        Cows, potholes, wedding processions, speed breakers. Seasonal obstacles for Diwali, IPL, monsoons.
+                    </p>
+                </div>
+
+                <div style="background: rgba(201, 115, 47, 0.1); border: 2px solid #c9732f; border-radius: 12px; padding: 2rem; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">☀️</div>
+                    <h4 style="color: #c9732f; margin-bottom: 1rem;">Noon Lighting</h4>
+                    <p style="color: #ccc; font-size: 0.95rem;">
+                        Scorching Indian sun. Heat-haze effects, strong shadows, vibrant color palette.
+                    </p>
+                </div>
+
+                <div style="background: rgba(201, 115, 47, 0.1); border: 2px solid #c9732f; border-radius: 12px; padding: 2rem; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+                    <h4 style="color: #c9732f; margin-bottom: 1rem;">UI Polish</h4>
+                    <p style="color: #ccc; font-size: 0.95rem;">
+                        Clean, Tamil/Hindi-friendly typography. Score tracking, challenge cards, leaderboards.
+                    </p>
+                </div>
+
+            </div>
+
+            <div style="background: rgba(201, 115, 47, 0.05); border-left: 4px solid #c9732f; padding: 2rem; border-radius: 8px; margin-top: 2rem;">
+                <p style="color: #ccc; font-style: italic; text-align: center;">
+                    <strong>All renderings shown above are representative of the game's visual direction.</strong><br/>
+                    Final graphics powered by professional 3D assets and AI-generated content creation.<br/>
+                    <strong style="color: #c9732f;">Play Store release: Q2 2026</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <h2>By the Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="number">3-5m</div>
+                <div class="label">Session Length</div>
+            </div>
+            <div class="stat">
+                <div class="number">60fps</div>
+                <div class="label">Smooth on Budget Phones</div>
+            </div>
+            <div class="stat">
+                <div class="number">100%</div>
+                <div class="label">Offline Playable</div>
+            </div>
+            <div class="stat">
+                <div class="number">₹10</div>
+                <div class="label">Weekly Prize Per Winner</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <h2>🚀 Coming to Google Play Store</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; color: rgba(255,255,255,0.95);">
+            <strong>Q2 2026</strong> — Pre-register now to get notified the moment Jugaad Racer launches.
+        </p>
+        <div class="download-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.chaibreakgames.jugaadracer" class="download-btn" target="_blank">
+                🔔 Pre-Register on Google Play
+            </a>
+        </div>
+        <p class="coming-soon" style="font-size: 1rem; color: rgba(255,255,255,0.8); margin-top: 2rem;">
+            First 10,000 players get <strong>bonus ₹5 in-game credit</strong> on launch day.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="margin-bottom: 0.5rem;"><strong>🛺 Chai Break Games</strong></p>
+        <p>&copy; 2026 Chai Break Games. All roads lead to fun.</p>
+        <p style="font-size: 0.9rem; color: #888; margin-top: 1rem; margin-bottom: 1.5rem;">
+            Building games for India. Shipping to the world.
+        </p>
+        <div class="social-links">
+            <a href="https://twitter.com/chaibreakgames" target="_blank">Twitter</a>
+            <a href="https://instagram.com/chaibreakgames" target="_blank">Instagram</a>
+            <a href="https://discord.gg/chaibreakgames" target="_blank">Discord</a>
+            <a href="mailto:hello@chaibreak.games">Email</a>
+        </div>
+    </footer>
+</body>
+</html>
