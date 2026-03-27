@@ -56,14 +56,18 @@
 
         <div class="contact-info">
             <h3>Reach us directly</h3>
-            <p>Email: <a href="mailto:hello@chaibreak.games">hello@chaibreak.games</a></p>
+            <p>Email: <a href="mailto:support@chaibreak.games">support@chaibreak.games</a></p>
             <p>Hours: Monday - Friday, 9:00 AM - 6:00 PM IST</p>
             <p>Office: 449 Kapse Chowk, Garoba Maidan, Nagpur 440008</p>
         </div>
 
         <div class="form-section">
             <h2>Send us a message</h2>
-            <form id="support-form" onsubmit="return false;">
+            <!-- Form submits via Formspree (free tier: 50/month) -->
+            <!-- To activate: sign up at formspree.io, create a form, replace YOUR_FORM_ID below -->
+            <form id="support-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="hidden" name="_subject" value="Jugaad Racer — Support Request">
+                <input type="hidden" name="_next" value="https://chaibreak.games/support.html?sent=1">
                 <div class="form-group">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -91,6 +95,20 @@
                 <button type="submit" class="submit-btn">Send Message</button>
                 <p class="form-note">We typically respond within 24 hours on business days.</p>
             </form>
+
+            <!-- Success message (shown after redirect from Formspree) -->
+            <div id="success-message" style="display:none; text-align:center; padding:2rem; background:rgba(80,200,80,0.1); border:2px solid rgba(80,200,80,0.3); border-radius:12px; margin-top:2rem;">
+                <h3 style="color:#4caf50; margin-bottom:0.5rem;">✓ Message Sent!</h3>
+                <p style="color:#aaa;">We'll get back to you at the email you provided within 24 hours.</p>
+            </div>
+
+            <script>
+                // Show success message if redirected back after submission
+                if (window.location.search.includes('sent=1')) {
+                    document.getElementById('support-form').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                }
+            </script>
         </div>
     </div>
 
@@ -102,7 +120,7 @@
             <a href="https://twitter.com/chaibreakgames" target="_blank">Twitter</a>
             <a href="https://instagram.com/chaibreakgames" target="_blank">Instagram</a>
             <a href="https://discord.gg/chaibreakgames" target="_blank">Discord</a>
-            <a href="mailto:hello@chaibreak.games">Email</a>
+            <a href="mailto:support@chaibreak.games">Email</a>
         </div>
     </footer>
 </body>
